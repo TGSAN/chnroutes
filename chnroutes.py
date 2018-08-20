@@ -6,6 +6,9 @@ import sys
 import argparse
 import math
 import textwrap
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def generate_ovpn(metric):
     results = fetch_ip_data()  
@@ -203,8 +206,14 @@ def fetch_ip_data():
     #fetch data from apnic
     print "Fetching data from apnic.net, it might take a few minutes, please wait..."
     url=r'https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'
-    data=urllib2.urlopen(url).read()
-    
+    # data=urllib2.urlopen(url).read()
+    data=None
+    try:
+        # global data
+        data=urllib2.urlopen(url, timeout = 3).read()
+    except urllib2.URLError, e:
+        raise MyException("There was an error: %r" % e)
+        exit()
     cnregex=re.compile(r'apnic\|cn\|ipv4\|[0-9\.]+\|[0-9]+\|[0-9]+\|a.*',re.IGNORECASE)
     cndata=cnregex.findall(data)
     
