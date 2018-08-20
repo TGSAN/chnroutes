@@ -103,6 +103,17 @@ PPTP 用法
 
 如果机器上没有安装 Python, 可以直接从下载页面上下载已经预生成的 bat 文件。
 
+ChinaDNS 用法
+---------
+
+生成的chnroute.txt是OpenWRT大部分应用通用的（如[Shadowsocks-libev for OpenWrt]）。
+
+### ChinaDNS (包括其他 OpenWRT 应用)
+
+* 下载 `chnroutes.py`。
+* 从终端进入下载目录, 执行 `python chnroutes.py -p chinadns`, 执行之后会生成 `chnroute.txt`
+文件。
+
 在路由器上使用
 --------------
 
@@ -138,3 +149,4 @@ emule, BT 等 P2P 下载软件（P2P 流量不应穿过 VPN）。
 [chinaip]:https://github.com/liudongmiao/chinaip
 [PR48]:https://github.com/fivesheep/chnroutes/pull/48
 [autoddvpn]:https://github.com/lincank/autoddvpn
+[Shadowsocks-libev for OpenWrt]:https://github.com/shadowsocks/openwrt-shadowsocks
