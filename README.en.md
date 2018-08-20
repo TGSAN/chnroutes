@@ -97,7 +97,7 @@ can use it somewhere else, like in other type of connections.
 Since Windows doesn't provide hook scripts for PPTP dialing, you have to run
 those manually before connecting and after disconnecting.
 
-PPTP Usage
+ChinaDNS Usage
 ----------
 
 The generated chnroute.txt file in this section is general-purpose for other
