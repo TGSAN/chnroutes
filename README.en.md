@@ -97,6 +97,18 @@ can use it somewhere else, like in other type of connections.
 Since Windows doesn't provide hook scripts for PPTP dialing, you have to run
 those manually before connecting and after disconnecting.
 
+PPTP Usage
+----------
+
+The generated chnroute.txt file in this section is general-purpose for other
+OpenWRT application than ChinaDNS (such as [Shadowsocks-libev for OpenWrt]).
+
+### ChinaDNS (including other OpenWRT applications)
+
+* Download `chnroutes.py`.
+* `cd` into the download destination and run `python chnroutes.py -p chinadns`.
+This generate `chnroute.txt` file.
+
 Using this on a router
 ----------------------
 
@@ -132,3 +144,4 @@ write an issue.
 [chinaip]:https://github.com/liudongmiao/chinaip
 [PR48]:https://github.com/fivesheep/chnroutes/pull/48
 [autoddvpn]:https://github.com/lincank/autoddvpn
+[Shadowsocks-libev for OpenWrt]:https://github.com/shadowsocks/openwrt-shadowsocks
