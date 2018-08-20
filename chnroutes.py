@@ -7,7 +7,6 @@ import argparse
 import math
 import textwrap
 
-
 def generate_ovpn(metric):
     results = fetch_ip_data()  
     rfile=open('routes.txt','w')
@@ -18,6 +17,17 @@ def generate_ovpn(metric):
     print "Usage: Append the content of the newly created routes.txt to your openvpn config file," \
           " and also add 'max-routes %d', which takes a line, to the head of the file." % (len(results)+20)
 
+def generate_chinadns(metric):
+    exchange_mask = lambda ipmask: sum(bin(int(i)).count('1') \
+	    for i in ipmask.split('.'))
+    results = fetch_ip_data()  
+    rfile=open('chnroute.txt','w')
+    for ip,mask,_ in results:
+        route_item="%s/%s\r\n"%(ip,exchange_mask(mask))
+        rfile.write(route_item)
+    rfile.close()
+    print "Usage: Append the content of the newly created routes.txt to your openvpn config file," \
+          " and also add 'max-routes %d', which takes a line, to the head of the file." % (len(results)+20)
 
 def generate_linux(metric):
     results = fetch_ip_data()
@@ -245,7 +255,9 @@ if __name__=='__main__':
     
     args = parser.parse_args()
     
-    if args.platform.lower() == 'openvpn':
+    if args.platform.lower() == 'chinadns':
+        generate_chinadns(args.metric)
+    elif args.platform.lower() == 'openvpn':
         generate_ovpn(args.metric)
     elif args.platform.lower() == 'linux':
         generate_linux(args.metric)
