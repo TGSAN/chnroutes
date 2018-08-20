@@ -26,8 +26,6 @@ def generate_chinadns(metric):
         route_item="%s/%s\r\n"%(ip,exchange_mask(mask))
         rfile.write(route_item)
     rfile.close()
-    print "Usage: Append the content of the newly created routes.txt to your openvpn config file," \
-          " and also add 'max-routes %d', which takes a line, to the head of the file." % (len(results)+20)
 
 def generate_linux(metric):
     results = fetch_ip_data()
